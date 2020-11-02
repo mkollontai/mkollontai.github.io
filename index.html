@@ -113,8 +113,6 @@ function pull_csv(){
 			temp += '<tr><td>' + d.Name + '</td><td>' + d.Height + '</td><td>' + d.Weight + '</td></tr>';
 			//console.log(temp)
 		});
-		console.log(temp);
-		console.log('got here');
 		temp += '</table>';
 		var u = document.getElementById("pres");
 		u.innerHTML = temp;
@@ -148,8 +146,6 @@ function pull_pres(){
 				temp += '<tr><td>' + d.Name + '</td><td>' + d.Height + '</td><td>' + d.Weight + '</td></tr>';
 			};
 		});
-		console.log(temp);
-		console.log('got here');
 		temp += '</table>';
 		var u = document.getElementById("sub_pres");
 		u.innerHTML = temp;
