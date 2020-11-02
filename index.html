@@ -13,6 +13,7 @@ table.center {
 </head>
 
 <body>
+
 <h1>DATA608 Homework #5</h1>
 
 <h2>Misha Kollontai</h2>
@@ -97,7 +98,6 @@ function calc2(){
 <script type="text/javascript">
 
 document.write('<p>Write a function to load the presidents.csv data and display the data as an html table (you <br> may use a cdv parser from any available library, though I encourage you to try the d3 one).</p>');
-document.write("<p>Now that you have the presidents data loaded, write a function that will return that<br>president's height & weight when you type it in. This can be typed into either an input box or<br>an alert box, and then print the result in a box or on the webpage.</p><br>");
 </script> 
 
 <script src="https://d3js.org/d3.v6.min.js"></script>
@@ -106,11 +106,11 @@ document.write("<p>Now that you have the presidents data loaded, write a functio
 
 function pull_csv(){
 	var git_url = 'https://raw.githubusercontent.com/charleyferrari/CUNY_DATA_608/master/module5/data/presidents.csv';
-	var temp = 'initiated';
+	var temp = '';
 	d3.csv(git_url).then(function(data) {
 		temp = '<table class="center"><tr><th>Name</th><th>Height</th><th>Weight</th></tr>';
 		data.forEach(function(d){
-			temp += '<tr><td>' + d.Name + '</td><td>' + d.Height + '</td><td>' + d.Weight + '</td></tr>'
+			temp += '<tr><td>' + d.Name + '</td><td>' + d.Height + '</td><td>' + d.Weight + '</td></tr>';
 			//console.log(temp)
 		});
 		console.log(temp);
@@ -126,11 +126,48 @@ function pull_csv(){
 
 <p>
 <form>
-    <input type="button" value="Get Presidents' Data" onClick="pull_csv();">
+    <input type="button" value="Show All Presidents' Data" onClick="pull_csv();">
 </form>
 </p>
 
 <div id="pres"></div>
+
+<script type="text/javascript">
+document.write("<p>Now that you have the presidents data loaded, write a function that will return that<br>president's height & weight when you type it in. This can be typed into either an input box or<br>an alert box, and then print the result in a box or on the webpage.</p><br>");
+</script>
+
+<script>
+
+function pull_pres(){
+	var git_url = 'https://raw.githubusercontent.com/charleyferrari/CUNY_DATA_608/master/module5/data/presidents.csv';
+	var srch = document.getElementById("pres_search").value.toLowerCase();
+	d3.csv(git_url).then(function(data) {
+		temp = '<table class="center"><tr><th>Name</th><th>Height</th><th>Weight</th></tr>';
+		data.forEach(function(d){
+			if (d.Name.toLowerCase().includes(srch)){
+				temp += '<tr><td>' + d.Name + '</td><td>' + d.Height + '</td><td>' + d.Weight + '</td></tr>';
+			};
+		});
+		console.log(temp);
+		console.log('got here');
+		temp += '</table>';
+		var u = document.getElementById("sub_pres");
+		u.innerHTML = temp;
+		return temp;
+	});
+};
+
+</script>
+
+<p>
+<form>
+	<input type="text" id="pres_search" name="pres_search">
+    <input type="button" value="Find in Presidential Data" onClick="pull_pres();">
+</form>
+</p>
+
+<div id="sub_pres"></div>
+
 
 </body>
 </html>
