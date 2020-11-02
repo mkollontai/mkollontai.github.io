@@ -1,7 +1,7 @@
 <html>
 <head>
 <style>
-h1, h2, h3, p, div, form, input {
+h1, h2, h3, h4, p, div, form, input {
 	text-align: center;
 }
 table.center {
@@ -147,6 +147,9 @@ function pull_pres(){
 			};
 		});
 		temp += '</table>';
+		if (temp == '<table class="center"><tr><th>Name</th><th>Height</th><th>Weight</th></tr></table>'){
+			temp = "<h4>No Presidents match your search!</h4>";
+		};
 		var u = document.getElementById("sub_pres");
 		u.innerHTML = temp;
 		return temp;
