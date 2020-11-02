@@ -119,12 +119,17 @@ function pull_csv(){
 		return temp;
 	});
 };
+function clear_pres(){
+	var u = document.getElementById("pres");
+	u.innerHTML = '';
 
+};
 </script>
 
 <p>
 <form>
     <input type="button" value="Show All Presidents' Data" onClick="pull_csv();">
+	<input type="button" value="Remove Table" onClick="clear_pres();">
 </form>
 </p>
 
@@ -166,6 +171,7 @@ function pull_pres(){
 </p>
 
 <div id="sub_pres"></div>
+
 
 </body>
 </html>
